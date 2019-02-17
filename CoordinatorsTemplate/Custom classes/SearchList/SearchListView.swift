@@ -17,4 +17,10 @@ public class SearchListView: UIViewController, SearchListViewProtocol {
     public required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
+    public override func loadView() {
+        super.loadView()
+        
+        self.navigationController?.navigationBar.topItem?.title = "SearchListView"
+    }
 }

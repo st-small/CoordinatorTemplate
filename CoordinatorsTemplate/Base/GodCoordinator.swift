@@ -12,6 +12,7 @@ public class GodCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public func start() { }
+    public func prepareFirstVC() -> BaseView? { return nil }
     
     public func addDependency(_ coordinator: Coordinator) {
         guard !childCoordinators.contains(where: { $0 === coordinator }) else { return }

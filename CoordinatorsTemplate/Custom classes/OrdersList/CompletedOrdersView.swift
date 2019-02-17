@@ -17,4 +17,10 @@ public class CompletedOrdersView: UIViewController, CompletedOrdersViewProtocol 
     public required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
+    public override func loadView() {
+        super.loadView()
+        
+        self.navigationController?.navigationBar.topItem?.title = "CompletedOrdersView"
+    }
 }

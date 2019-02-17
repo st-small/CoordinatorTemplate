@@ -8,4 +8,5 @@
 
 public protocol Coordinator: class {
     func start()
+    func prepareFirstVC() -> BaseView?
 }

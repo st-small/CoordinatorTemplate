@@ -7,19 +7,22 @@
 //
 
 public final class CoordinatorFactoryImp: CoordinatorFactory {
+    
+    public func prepareFirstVC() -> BaseView? { return nil }
+    
     public func makeTabbarCoordinator() -> (configurator: Coordinator, toPresent: Presentable?) {
         let controller = TabBarController()
         let coordinator = TabBarCoordinator(tabbarView: controller, coordinatorFactory: CoordinatorFactoryImp())
         return (coordinator, controller)
     }
     
-    public func makeSearchListCoordinator(navController: CustomNavigation?) -> Coordinator {
-        let coordinator = SearchListCoordinator(router: router(navController), factory: SearchListModuleFactoryImp(), coordinatorFactory: CoordinatorFactoryImp())
+    public func makeSearchListCoordinator() -> Coordinator {
+        let coordinator = SearchListCoordinator(factory: SearchListModuleFactoryImp(), coordinatorFactory: CoordinatorFactoryImp())
         return coordinator
     }
     
-    public func makeOrdersListCoordinator(navController: CustomNavigation?) -> Coordinator {
-        let coordinator = OrderListCoordinator(router: router(navController), factory: OrderListModuleFactoryImp(), coordinatorFactory: CoordinatorFactoryImp())
+    public func makeOrdersListCoordinator() -> Coordinator {
+        let coordinator = OrderListCoordinator(factory: OrderListModuleFactoryImp(), coordinatorFactory: CoordinatorFactoryImp())
         return coordinator
     }
     

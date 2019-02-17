@@ -11,6 +11,6 @@ import Foundation
 public protocol CoordinatorFactory {
 
     func makeTabbarCoordinator() -> (configurator: Coordinator, toPresent: Presentable?)
-    func makeSearchListCoordinator(navController: CustomNavigation?) -> Coordinator
-    func makeOrdersListCoordinator(navController: CustomNavigation?) -> Coordinator
+    func makeSearchListCoordinator() -> Coordinator
+    func makeOrdersListCoordinator() -> Coordinator
 }

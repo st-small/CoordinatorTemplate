@@ -12,10 +12,9 @@ public final class SearchListCoordinator: GodCoordinator {
     
     private let factory: SearchListModuleFactory
     private let coordinatorFactory: CoordinatorFactory
-    private let router: Router
     
-    public init(router: Router, factory: SearchListModuleFactory, coordinatorFactory: CoordinatorFactory) {
-        self.router = router
+    public init(factory: SearchListModuleFactory, coordinatorFactory: CoordinatorFactory) {
+        
         self.factory = factory
         self.coordinatorFactory = coordinatorFactory
     }
@@ -24,8 +23,11 @@ public final class SearchListCoordinator: GodCoordinator {
         showSearchList()
     }
     
+    public override func prepareFirstVC() -> BaseView? {
+        return factory.makeSearchListOutput()
+    }
+    
     private func showSearchList() {
-        let searchOutput = factory.makeSearchListOutput()
-        router.setRootModule(searchOutput)
+        //let searchOutput = factory.makeSearchListOutput()
     }
 }

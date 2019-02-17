@@ -12,21 +12,21 @@ public final class OrderListCoordinator: GodCoordinator {
     
     private let factory: OrderListModuleFactory
     private let coordinatorFactory: CoordinatorFactory
-    private let router: Router
     
-    public init(router: Router, factory: OrderListModuleFactory, coordinatorFactory: CoordinatorFactory) {
-        self.router = router
+    public init(factory: OrderListModuleFactory, coordinatorFactory: CoordinatorFactory) {
         self.factory = factory
         self.coordinatorFactory = coordinatorFactory
     }
     
     public override func start() {
-        showOrdersList()
+        
     }
     
-    //MARK: - Run current flow's controllers
+    public override func prepareFirstVC() -> BaseView? {
+        return factory.makeOrdersListOutput()
+    }
+    
     private func showOrdersList() {
-        let ordersOutput = factory.makeOrdersListOutput()
-        router.setRootModule(ordersOutput)
+        //let ordersOutput = factory.makeOrdersListOutput()
     }
 }

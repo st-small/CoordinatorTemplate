@@ -15,10 +15,10 @@ public class CustomNavigation: UINavigationController {
         
         navigationBar.isTranslucent = false
         navigationBar.tintColor = .red
-        navigationBar.barTintColor = .blue
+        navigationBar.barTintColor = .white
         navigationBar.shadowImage = UIImage()
         
-        let attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.green]
+        let attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.darkGray]
         navigationBar.titleTextAttributes = attributes
         
         addShadowToBar()

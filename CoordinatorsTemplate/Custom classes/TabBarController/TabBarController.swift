@@ -21,4 +21,23 @@ public class TabBarController: UITabBarController, TabBarView {
         
     }
 
+    public func update(_ viewControllers: [BaseView]) {
+        
+        guard let VCs = viewControllers as? [UIViewController] else { return }
+        
+        var updatedViewControllers = [CustomNavigation]()
+        for item in VCs {
+            
+            switch item {
+            case item as SearchListView: item.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+            case item as CompletedOrdersView: item.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+            default: break
+            }
+            
+            let nav = CustomNavigation(rootViewController: item)
+            updatedViewControllers.append(nav)
+        }
+        
+        self.viewControllers = updatedViewControllers
+    }
 }

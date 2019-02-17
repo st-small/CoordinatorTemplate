@@ -6,7 +6,7 @@
 //  Copyright © 2019 Stanly Shiyanovskiy. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public class TabBarCoordinator: GodCoordinator {
     
@@ -19,30 +19,24 @@ public class TabBarCoordinator: GodCoordinator {
     }
     
     public override func start() {
-        tabbarView.onViewDidLoad = runSearchListFlow()
-        tabbarView.onSearchFlowSelect = runSearchListFlow()
-        //        tabbarView.onSettingsFlowSelect = runSearchListFlow()
         
+        let VCs = [createSearchListTab(),
+                   createOrdersListTab()].compactMap({ $0 })
         
+        tabbarView.update(VCs)
     }
     
-    private func runSearchListFlow() -> ((CustomNavigation) -> ()) {
-        return { [unowned self] navController in
-            if navController.viewControllers.isEmpty == true {
-                let searchCoordinator = self.coordinatorFactory.makeSearchListCoordinator(navController: navController)
-                self.addDependency(searchCoordinator)
-                searchCoordinator.start()
-            }
-        }
+    private func createSearchListTab() -> BaseView? {
+        let searchCoordinator = self.coordinatorFactory.makeSearchListCoordinator()
+        self.addDependency(searchCoordinator)
+        
+        return searchCoordinator.prepareFirstVC()
     }
     
-    private func runOrdersFlow() -> ((CustomNavigation) -> ()) {
-        return { [unowned self] navController in
-            if navController.viewControllers.isEmpty == true {
-                let searchCoordinator = self.coordinatorFactory.makeOrdersListCoordinator(navController: navController)
-                self.addDependency(searchCoordinator)
-                searchCoordinator.start()
-            }
-        }
+    private func createOrdersListTab() -> BaseView? {
+        let ordersCoordinator = self.coordinatorFactory.makeOrdersListCoordinator()
+        self.addDependency(ordersCoordinator)
+        
+        return ordersCoordinator.prepareFirstVC()
     }
 }
